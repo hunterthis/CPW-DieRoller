@@ -14,20 +14,32 @@ namespace DieRollerA
         /// <summary>
         ///  current face up value of the die
         /// </summary>
-    public byte FaceValue { get; set; }
+        private static Random _random;
+
+       public Die()
+        {
+            Roll();
+        }
+        public byte FaceValue { get; set; }
     /// <summary>
     /// True if die is currently held
     /// </summary>
     public bool IsHeld { get; set; }
-    /// <summary>
-    /// Rolls die and sets the <see cref="FaceValue"/>
-    /// to the new number
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    public void Roll()
+        /// <summary>
+        /// Rolls die and sets the <see cref="FaceValue"/>
+        /// to the new number
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        public byte Roll()
         {
-            // generate random number, sets face value and returns new number
-            throw new NotImplementedException();
+            if (!IsHeld)
+            {
+                // Generate random number
+                byte newValue = (byte)_random.Next(1, 7);
+
+                FaceValue = newValue;
+            }
+            return FaceValue;
         }
     }
 }
